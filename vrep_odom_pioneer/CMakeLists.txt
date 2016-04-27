@@ -8,7 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 catkin_package(
- INCLUDE_DIRS include
+ # INCLUDE_DIRS include
 #  LIBRARIES vrep_odom_pioneer
  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp tf
 #  DEPENDS system_lib
