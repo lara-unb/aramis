@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="aramis_description">
+
+    <xacro:include filename="$(find aramis_description)/robots/pioneer3dx.xacro"/>
+    <xacro:include filename="$(find aramis_description)/robots/suporte_aramis_description.URDF"/>
+    <xacro:include filename="$(find aramis_description)/robots/sensor_sonar_pioneer.urdf.xacro"/>
+    <xacro:include filename="$(find aramis_description)/robots/sensor_camera_usb_pioneer.urdf.xacro"/>
+    <xacro:include filename="$(find pr2_description)/urdf/sensors/kinect_camera.urdf.xacro" />
+    <xacro:include filename="$(find pr2_description)/urdf/common.xacro" />
+
+    <xacro:p3dx_front suffix="left" reflect="1"/>
+    <xacro:p3dx_front suffix="right" reflect="-1"/>
+    <xacro:p3dx_back suffix="left" reflect="1"/>
+    <xacro:p3dx_back suffix="right" reflect="-1"/>
+
+    <!-- 
+    <joint name="pioneer2cyton" type="fixed">
+    	<origin xyz="0.08 0.071 0.004" rpy="0 0 0"/>
+    		<parent link="top"/>
+    		<child link="link0"/>
+    </joint>
+     -->
+    <joint name="pioneer2suporte" type="fixed">
+    	<origin xyz="0.073 0.160 0.004" rpy="0 0 -1.57"/>
+    		<parent link="top"/>
+    		<child link="suporte_base"/>
+    </joint>
+
+    <kinect_camera_v0 name="kinect" parent="suporte_kinect">
+        <!-- <origin rpy="0 -3.9246 1.57"  xyz="0.170 0.067 -0.035"/> -->
+        <origin rpy="0 1.57 1.57"  xyz="0.170 0.087 0.0"/>
+    </kinect_camera_v0>
+
+    <camera_usb name="usb_camera" parent="suporte_kinect">
+        <!-- //<origin rpy="0 -3.9246 1.57"  xyz="0.170 0.067 -0.035"/> -->
+        <origin rpy="1.57 0 3.14"  xyz="0.275 0.0 0.060"/>
+    </camera_usb>
+
+    <sonar_pioneer name="sonar_0" parent="base_link">
+        <origin xyz="0.069 0.130 0.209" rpy="0 0 1.5708"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_1" parent="base_link">
+        <origin xyz="0.110 0.110 0.209" rpy="0 0 0.8727"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_2" parent="base_link">
+        <origin xyz="0.150 0.075 0.209" rpy="0 0 0.5235"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_3" parent="base_link">
+        <origin xyz="0.160 0.034 0.209" rpy="0 0 0.1745"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_4" parent="base_link">
+        <origin xyz="0.160 -0.034 0.209" rpy="0 0 -0.1745"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_5" parent="base_link">
+        <origin xyz="0.150 -0.075 0.209" rpy="0 0 -0.5235"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_6" parent="base_link">
+        <origin xyz="0.110 -0.110 0.209" rpy="0 0 -0.8727"/>
+    </sonar_pioneer>
+
+    <sonar_pioneer name="sonar_7" parent="base_link">
+        <origin xyz="0.069 -0.130 0.209" rpy="0 0 -1.5708"/>
+    </sonar_pioneer>
+
+    <link name="back_sonar_range_frame" />
+    <joint name="back_sonar_range_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="base_link" />
+        <child link="back_sonar_range_frame" />
+    </joint>
+
+    <xacro:p3dx_gazebo_ext/> 
+
+
+</robot>

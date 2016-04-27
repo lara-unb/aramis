@@ -1,0 +1,33 @@
+footprint: [[-0.5, -0.33], [-0.5, 0.33], [0.5, 0.33], [0.5, -0.33]]
+footprint_padding: 0.01
+
+robot_base_frame: base_link
+update_frequency: 3.0
+publish_frequency: 3.0
+transform_tolerance: 2
+
+resolution: 0.02
+planner_frequency: 5
+
+obstacle_range: 2.5
+raytrace_range: 3.0
+
+#layer definitions
+static:
+    map_topic: /map
+    subscribe_to_updates: true
+
+obstacles_sonar:
+    observation_sources: sonar
+    sonar: {data_type: PointCloud, clearing: true, marking: true, topic: sonar_cloud, inf_is_valid: false}
+
+obstacles_kinect:
+    observation_sources: kinect
+    kinect: {data_type: PointCloud2, clearing: true, marking: true, topic: kinect/kinect/depth/points, inf_is_valid: false}
+
+obstacles_laser:
+    observation_sources: laser
+    laser: {data_type: LaserScan, clearing: true, marking: true, topic: kinect_scan, inf_is_valid: true}
+
+inflation:
+    inflation_radius: 0.55

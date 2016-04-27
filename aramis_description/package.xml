@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+    <name>aramis_description</name>
+    <version>1.0.0</version>
+    <description>This package contains Aramis (Pioneer 3DX) robot description files</description>
+
+    <maintainer email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</maintainer>
+
+    <license>BSD</license>
+
+    <author email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <export>
+    </export>
+</package>

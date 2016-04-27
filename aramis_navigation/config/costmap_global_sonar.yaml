@@ -1,0 +1,8 @@
+global_frame: aramis/odom
+rolling_window: true
+track_unknown_space: true
+
+plugins:
+  - {name: obstacles_kinect,          type: "costmap_2d::ObstacleLayer"}
+  # - {name: obstacles_sonar,           type: "costmap_2d::ObstacleLayer"}
+  - {name: inflation,                 type: "costmap_2d::InflationLayer"}

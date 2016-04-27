@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- <node name="enable_motors" pkg="rostopic" type="rostopic" args="pub -1 /cmd_motor_state p2os_msgs/MotorState 'state: 1' " /> -->
+  <!-- <node name="odom_relay" type="relay" pkg="topic_tools" args="/odom /odom_relay" /> -->
+  <!-- <node name="scan_relay" type="relay" pkg="topic_tools" args="/kinect_scan /kinect_scan_relay" /> -->
+<!--   <node name="camera_info_relay" type="relay" pkg="topic_tools" args="/camera/data_throttled_camera_info /camera/data_throttled_camera_info_relay" />
+  <node name="republish_rgb" type="republish" pkg="image_transport" args="theora in:=/camera/data_throttled_image raw out:=/camera/data_throttled_image_relay" />
+  <node name="republish_depth" type="republish" pkg="image_transport" args="compressedDepth in:=/camera/data_throttled_image_depth raw out:=/camera/data_throttled_image_depth_relay" /> -->
+
+  <!-- nodelet point cloud -->
+  <!-- <node pkg="nodelet" type="nodelet" name="standalone_nodelet"  args="manager"/> -->
+
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0 0 0 kinect_optical_frame depth_optical_frame 25" />
+  <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 0 0 0 depth_optical_frame rgb_optical_frame 25" />
+  <node pkg="tf" type="static_transform_publisher" name="link3_broadcaster" args="0 0 0.16 0 0 0 aramis/odom base_link 25" />
+
+  <!-- <group ns="kinect"> -->
+<!--       <node pkg="nodelet" type="nodelet" name="point_cloud_xyz"
+            args="load depth_image_proc/point_cloud_xyz standalone_nodelet">
+        <remap from="camera_info" to="/camera/data_throttled_camera_info_relay"/>
+        <remap from="image_rect" to="/camera/data_throttled_image_depth_relay"/>
+      </node> -->
+  <!-- </group> -->
+
+  <include file="$(find aramis_description)/launch/aramis_navigation.launch" />
+
+  <!--- Run Move Base -->  
+     <include file="$(find aramis_navigation)/launch/move_base.launch">
+    <arg name="no_static_map" value="true"/>
+  </include>
+
+  <node name="fake_localization" pkg="fake_localization" type="fake_localization" output="screen" >
+    <remap from="base_pose_ground_truth" to="aramis/odom" />
+    <rosparam>
+    odom_frame_id: aramis/odom
+    base_frame_id: base_link
+    global_frame_id: map
+    </rosparam>
+  </node>
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_node" output="screen">
+    <remap from="cloud_in"     to="kinect/kinect/depth/points"/>
+    <!-- <remap from="camera_info" to="/camera/depth_registered/camera_info"/> -->
+    <remap from="scan" to="/kinect_scan"/>
+    <rosparam>
+    target_frame: kinect_frame # Leave disabled to output scan in pointcloud frame
+    transform_tolerance: 1.0
+    min_height: 0.0
+    max_height: 1.0
+
+    angle_min: -0.52 # -M_PI/2
+    angle_max: 0.52 # M_PI/2
+    angle_increment: 0.005 # M_PI/360.0
+    scan_time: 0.3333
+    range_min: 0.45
+    range_max: 4.0
+    use_inf: true
+
+    # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+    # 0 : Detect number of cores
+    # 1 : Single threaded
+    # 2->inf : Parallelism level
+    concurrency_level: 0
+    </rosparam>
+  </node>
+
+</launch>

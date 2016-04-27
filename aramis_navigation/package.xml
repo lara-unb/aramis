@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package>
+    <name>aramis_navigation</name>
+    <version>1.0.0</version>
+    <description>
+        This package contains configuration files and demos for navigation stack
+    </description>
+
+    <maintainer email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</maintainer>
+
+    <license>BSD</license>
+
+    <author email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>roslaunch</build_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>tf</build_depend>
+    <build_depend>move_base_msgs</build_depend>
+    <build_depend>actionlib</build_depend>
+    <build_depend>angles</build_depend>
+
+    <run_depend>roscpp</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>tf</run_depend>
+    <run_depend>roslaunch</run_depend>
+    <run_depend>amcl</run_depend>
+    <run_depend>move_base_msgs</run_depend>
+    <run_depend>actionlib</run_depend>
+    <run_depend>angles</run_depend>
+    <run_depend>frontier_exploration</run_depend>
+    <run_depend>gmapping</run_depend>
+    <run_depend>map_server</run_depend>
+    <run_depend>move_base</run_depend>
+    <run_depend>navfn</run_depend>
+    <run_depend>base_local_planner</run_depend>
+    <run_depend>dwa_local_planner</run_depend>
+
+    <export>
+    </export>
+</package>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+    <name>vrep_odom_pioneer</name>
+    <version>0.0.0</version>
+    <description>This package publish the odometry provided by V-REP</description>
+    <maintainer email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</maintainer>
+
+    <license>BSD</license>
+
+    <author email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>geometry_msgs</build_depend>
+    <build_depend>nav_msgs</build_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>tf</build_depend>
+    <run_depend>geometry_msgs</run_depend>
+    <run_depend>nav_msgs</run_depend>
+    <run_depend>roscpp</run_depend>
+    <run_depend>tf</run_depend>
+
+    <export>
+    </export>
+</package>

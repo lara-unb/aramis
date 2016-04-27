@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find aramis_description)/robots/aramis_description.xacro" />
+
+    <!-- send fake joint values -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="TRUE"/>
+    </node>
+
+    <!-- <include file="$(find freenect_launch)/launch/freenect.launch" >
+        <arg name="rgb_processing"                  value="false" />
+        <arg name="ir_processing"                   value="false" />
+        <arg name="depth_processing"                value="true" />
+        <arg name="depth_registered_processing"     value="false" />
+        <arg name="disparity_processing"            value="false" />
+        <arg name="disparity_registered_processing" value="false" />
+        <arg name="rgb_frame_id" value="kinect_optical_frame" />
+        <arg name="depth_frame_id" value="kinect_optical_frame" />
+    </include>
+     -->
+     
+    <!-- Combine joint values -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+    <!-- Show in Rviz   -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find aramis_description)/launch/aramis_display.rviz"/>
+    <!-- sonar visualization -->
+    <node name="sonar_viz" pkg="sonar_viz" type="sonar_viz">
+        <!-- <remap from="sonar_range" to="aramis/sonar_range"/> -->
+        <!-- <remap from="sonar_cloud" to="aramis/sonar_cloud"/> -->
+    </node>
+
+  
+</launch>

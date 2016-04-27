@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>aramis_vrep</name>
+  <version>0.0.0</version>
+  <description>Navigation configuration and demos fo V-REP</description>
+
+  <maintainer email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</maintainer>
+
+  <license>BSD</license>
+
+  <author email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>aramis_description</build_depend>
+  <build_depend>move_base</build_depend>
+  <build_depend>vrep_odom_pioneer</build_depend>
+  <run_depend>aramis_description</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>vrep_odom_pioneer</run_depend>
+
+  <export>
+  </export>
+</package>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find aramis_description)/robots/aramis_description.xacro" />
+
+    <!-- send fake joint values -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false"/>
+    </node>
+
+    <!-- <include file="$(find rgbd_launch)/launch/kinect_frames.launch" /> -->
+    <arg name="pi"   value="3.14159265359" />
+    <arg name="pi/2" value="1.5707963267948966" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="kinect_broadcaster" args="0 0 0 -$(arg pi/2) -$(arg pi) -$(arg pi/2) kinect_frame kinect_depth_HASHMARK_0 50" /> -->
+    <node pkg="tf" type="static_transform_publisher" name="kinect_broadcaster" args="0 0 0 -$(arg pi/2) -$(arg pi) -$(arg pi/2) kinect_frame kinect_depth 50" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find aramis_description)/launch/vrep_display.rviz"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+    <node name="odom" pkg="vrep_odom_pioneer" type="odom" />
+</launch>

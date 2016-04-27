@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Aramis Description for V-REP -->
+  <include file="$(find aramis_description)/launch/vrep_description.launch" />
+
+  <!--- Run Move Base -->  
+     <include file="$(find aramis_vrep)/launch/move_base.launch">
+    <arg name="no_static_map" value="true"/>
+  </include>
+
+  <node name="fake_localization" pkg="fake_localization" type="fake_localization" output="screen" >
+    <remap from="base_pose_ground_truth" to="odom" />
+  </node>
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_node" output="screen">
+    <remap from="cloud_in"     to="/vrep/KinectDepth"/>
+    <!-- <remap from="camera_info" to="/camera/depth_registered/camera_info"/> -->
+    <remap from="scan" to="/kinect_scan"/>
+    <rosparam>
+    target_frame: kinect_frame # Leave disabled to output scan in pointcloud frame
+    transform_tolerance: 1.0
+    min_height: 0.0
+    max_height: 1.0
+
+    angle_min: -0.52 # -M_PI/2
+    angle_max: 0.52 # M_PI/2
+    angle_increment: 0.005 # M_PI/360.0
+    scan_time: 0.3333
+    range_min: 0.45
+    range_max: 4.0
+    use_inf: true
+
+    # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+    # 0 : Detect number of cores
+    # 1 : Single threaded
+    # 2->inf : Parallelism level
+    concurrency_level: 0
+    </rosparam>
+  </node>
+</launch>

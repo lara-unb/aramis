@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+    <name>sonar_viz</name>
+    <version>1.0.0</version>
+    <description>This package contains the Sonar visualization of Pioneer 3DX in Rviz</description>
+
+    <maintainer email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</maintainer>
+
+    <license>BSD</license>
+
+    <author email="gabriel.araujo.5000@gmail.com">Gabriel Araujo</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>sensor_msgs</build_depend>
+    <build_depend>p2os_msgs</build_depend>
+    <build_depend>tf</build_depend>
+    <run_depend>roscpp</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+    <run_depend>p2os_msgs</run_depend>
+    <run_depend>tf</run_depend>
+
+    <export>
+    </export>
+</package>

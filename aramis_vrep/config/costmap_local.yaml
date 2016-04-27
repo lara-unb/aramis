@@ -1,0 +1,8 @@
+global_frame: odom
+rolling_window: true
+
+plugins:
+  - {name: obstacles_kinect,          type: "costmap_2d::ObstacleLayer"}
+  - {name: obstacles_laser,           type: "costmap_2d::ObstacleLayer"}
+  - {name: inflation,                 type: "costmap_2d::InflationLayer"}
+  # - {name: footprint_layer,           type: "costmap_2d::FootprintLayer"}

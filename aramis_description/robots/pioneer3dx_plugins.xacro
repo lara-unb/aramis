@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="pioneer3dx_joints_state_publisher">        
+    <gazebo>
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+          <robotNamespace></robotNamespace>
+          <jointName>chassis_swivel_joint, swivel_wheel_joint, left_hub_joint, right_hub_joint</jointName>
+          <updateRate>10.0</updateRate>
+          <alwaysOn>true</alwaysOn>
+        </plugin>
+    </gazebo>
+  </xacro:macro>
+      
+  <xacro:macro name="pioneer3dx_diff_drive">
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <rosDebugLevel>Debug</rosDebugLevel>
+            <robotNamespace></robotNamespace>
+            <publishWheelTF>true</publishWheelTF>
+            <publishWheelJointState>true</publishWheelJointState>
+            <alwaysOn>true</alwaysOn>
+            <leftJoint>left_hub_joint</leftJoint>
+            <rightJoint>right_hub_joint</rightJoint>
+            <wheelSeparation>0.3</wheelSeparation>
+            <wheelDiameter>0.18</wheelDiameter>
+            <wheelTorque>20</wheelTorque>
+            <wheelAcceleration>1.8</wheelAcceleration>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometrySource>world</odometrySource>
+            <robotBaseFrame>base_link</robotBaseFrame>
+            <updateRate>10.0</updateRate>
+        </plugin>
+    </gazebo>  
+  </xacro:macro>
+
+  <xacro:macro name="pioneer3dx_usb_camera">  
+    <!-- camera -->
+    <gazebo reference="usb_camera">
+      <sensor type="camera" name="usb_camera">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise type="gaussian">
+            <!-- Noise is sampled independently per pixel on each frame.  
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
+            <mean>0.0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <robotNamespace>/</robotNamespace>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <cameraName>/usb_camera</cameraName>
+          <imageTopicName>usb_camera/image_raw</imageTopicName>
+          <cameraInfoTopicName>usb_camera/camera_info</cameraInfoTopicName>
+          <frameName>usb_camera</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+</robot>
