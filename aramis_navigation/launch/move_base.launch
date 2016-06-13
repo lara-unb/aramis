@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-    
+
     <arg name="no_static_map" default="false"/>
 
     <arg name="base_global_planner" default="navfn/NavfnROS"/>
@@ -32,9 +32,9 @@
         <param name="global_costmap/height" value="100.0" if="$(arg no_static_map)" />
 
         <!-- Remap into namespace for cmd_vel_mux switching -->
-        <remap from="cmd_vel" to="aramis/cmd_vel" />
-        <remap from="odom" to="aramis/odom" />
-    
+        <remap from="cmd_vel" to="cmd_vel" />
+        <remap from="odom" to="odom" />
+
     </node>
 
 </launch>

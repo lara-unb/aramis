@@ -5,7 +5,7 @@
 
     <!-- send fake joint values -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-        <param name="use_gui" value="TRUE"/>
+        <param name="use_gui" value="false"/>
     </node>
 
     <!-- <include file="$(find freenect_launch)/launch/freenect.launch" >
@@ -19,7 +19,7 @@
         <arg name="depth_frame_id" value="kinect_optical_frame" />
     </include>
      -->
-     
+
     <!-- Combine joint values -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
     <!-- Show in Rviz   -->
@@ -30,5 +30,5 @@
         <!-- <remap from="sonar_cloud" to="aramis/sonar_cloud"/> -->
     </node>
 
-  
+
 </launch>
