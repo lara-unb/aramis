@@ -5,7 +5,7 @@
       xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="pioneer3dx_plugins.xacro"/>
-  
+
     <xacro:macro name="camera_usb" params="name parent *origin">
         <link name="${name}_frame">
             <inertial>
@@ -42,7 +42,7 @@
         <link name="${name}_optical_frame" />
         <joint name="${name}_optical_joint" type="fixed">
             <!-- <origin xyz="-0.025 0.038 0.024" rpy="0 -1.57 0"/> -->
-            <origin xyz="0.025 0.026 0.024" rpy="0 0 0"/>
+            <origin xyz="0.025 0.026 0.024" rpy="0 0 3.14"/>
             <parent link="${name}_frame" />
             <child link="${name}_optical_frame" />
         </joint>
@@ -63,7 +63,7 @@
                 </clip>
                 <noise>
                   <type>gaussian</type>
-                  <!-- Noise is sampled independently per pixel on each frame.  
+                  <!-- Noise is sampled independently per pixel on each frame.
                        That pixel's noise value is added to each of its color
                        channels, which at that point lie in the range [0,1]. -->
                   <mean>0.0</mean>
@@ -86,7 +86,7 @@
                 <distortionT2>0.0</distortionT2>
               </plugin>
             </sensor>
-          </gazebo> 
+          </gazebo>
     </xacro:macro>
 
 
