@@ -15,7 +15,7 @@
             </inertial>
         </link>
         <joint name="${name}_frame_joit" type="fixed">
-            <insert_block name="origin" />
+            <xacro:insert_block name="origin" />
             <parent link="${parent}" />
             <child link="${name}_frame" />
         </joint>

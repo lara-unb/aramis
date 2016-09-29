@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="aramis_description">
 
     <xacro:include filename="$(find aramis_description)/robots/pioneer3dx.xacro"/>
@@ -9,10 +8,10 @@
     <xacro:include filename="$(find pr2_description)/urdf/sensors/kinect_camera.urdf.xacro" />
     <xacro:include filename="$(find pr2_description)/urdf/common.xacro" />
 
-    <xacro:p3dx_front suffix="left" reflect="1"/>
-    <xacro:p3dx_front suffix="right" reflect="-1"/>
-    <xacro:p3dx_back suffix="left" reflect="1"/>
-    <xacro:p3dx_back suffix="right" reflect="-1"/>
+    <!-- <xacro:p3dx_front suffix="left" reflect="1"/> -->
+    <!-- <xacro:p3dx_front suffix="right" reflect="-1"/> -->
+    <!-- <xacro:p3dx_back suffix="left" reflect="1"/> -->
+    <!-- <xacro:p3dx_back suffix="right" reflect="-1"/> -->
 
     <!--
     <joint name="pioneer2cyton" type="fixed">
@@ -23,15 +22,8 @@
      -->
     <joint name="pioneer2suporte" type="fixed">
         <origin xyz="0.073 0.160 0.004" rpy="0 0 -1.57"/>
-           <parent link="top"/>
-           <child link="suporte_base"/>
-    </joint>
-
-    <link name="imu_link" />
-    <joint name="imu_joint" type="fixed" >
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="top" />
-        <child link="imu_link" />
+            <parent link="top"/>
+            <child link="suporte_base"/>
     </joint>
 
     <kinect_camera_v0 name="kinect" parent="suporte_kinect">
@@ -83,7 +75,7 @@
         <child link="back_sonar_range_frame" />
     </joint>
 
-    <xacro:p3dx_gazebo_ext/>
+    <!-- <xacro:p3dx_gazebo_ext/>  -->
 
 
 </robot>
