@@ -23,7 +23,7 @@
     <visual name="base_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry name="pioneer_geom">
-        <mesh filename="${meshes}/swivel.stl"/>
+        <mesh filename="${meshes}/swivel.dae"/>
       </geometry>
       <material name="swivel">
         <color rgba="0.5 0.5 0.5 1"/>
@@ -59,7 +59,7 @@
     <visual name="base_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry name="pioneer_geom">
-        <mesh filename="${meshes}/center_wheel.stl"/>
+        <mesh filename="${meshes}/center_wheel.dae"/>
       </geometry>
       <material name="WheelBlack">
         <color rgba="0.117 0.117 0.117 1"/>
@@ -92,7 +92,7 @@
     <visual name="base_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry name="pioneer_geom">
-        <mesh filename="${meshes}/center_hubcap.stl"/>
+        <mesh filename="${meshes}/center_hubcap.dae"/>
       </geometry>
       <material name="swivel">
         <color rgba="0.5 0.5 0.5 1"/>
