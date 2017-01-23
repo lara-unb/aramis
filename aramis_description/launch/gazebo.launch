@@ -15,7 +15,7 @@
 
   <arg
     name="model" />
-  <param name="robot_description" command="$(find xacro)/xacro.py $(find aramis_description)/robots/aramis_description.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find aramis_description)/robots/aramis_description.xacro" />
   <param
     name="use_gui"
     value="$(arg gui)" />
