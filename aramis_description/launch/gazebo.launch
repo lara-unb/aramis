@@ -35,7 +35,4 @@
     args="-param robot_description -urdf -model aramis"
     output="screen" />
 
-    <node pkg="tf" type="static_transform_publisher" name="base_to_base_aramis" 
-   args="0.0 -0.0 0.0 0.0 0.0 0.0 aramis/base_link base_link 100" />
-
 </launch>
