@@ -25,8 +25,8 @@
       <remap from="image"     to="/kinect/depth/image_rect"/>
       <!-- <remap from="camera_info" to="/kinect/depth/camera_info"/> -->
       <remap from="scan" to="/kinect_scan"/>
-      <param name="scan_height" value="75"/>
-      <param name="range_max" type="double" value="4"/>
+      <param name="scan_height" value="50"/>
+      <param name="range_max" type="double" value="2"/>
       <param name="output_frame_id" type="str" value="kinect_frame"/>
     </node>
     <!-- Combine joint values -->
